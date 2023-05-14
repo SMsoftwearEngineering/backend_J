@@ -1,0 +1,69 @@
+package com.example.swbackend.service;
+
+import com.example.swbackend.DTO.FolderDto;
+import com.example.swbackend.constant.Color;
+import com.example.swbackend.domain.FolderEntity;
+import com.example.swbackend.domain.MemberEntity;
+import com.example.swbackend.mapper.FolderMapper;
+import com.example.swbackend.repository.FolderRepository;
+import com.example.swbackend.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@Slf4j
+@RequiredArgsConstructor
+public class FolderService {
+    private final FolderRepository folderRepository;
+    private final MemberService memberService;
+    private final FolderMapper folderMapper;
+
+
+    @Transactional
+    public FolderDto.FolderResponseDto createFolder(FolderDto.FolderPostDto postDto){
+        MemberEntity memberEntity = memberService.readMember(postDto.getMemberId());
+
+        FolderEntity folderEntity = FolderEntity.createFolder(
+                memberEntity, postDto.getFolderTitle(), Color.valueOf(postDto.getColor()));
+
+        folderRepository.save(folderEntity);
+
+        return folderMapper.folderEntityToFolderResponseDto(folderEntity);
+    }
+
+
+    @Transactional
+    public FolderDto.FolderResponseDto updateFolder(FolderDto.UpdateFolderDto updateFolderDto){
+
+        FolderEntity folderEntity = folderRepository.findById(updateFolderDto.getFolderId())
+
+                .orElseThrow(()-> new RuntimeException("there is no folder"));
+
+        folderEntity.updateFolder(updateFolderDto);
+
+        return folderMapper.folderEntityToFolderResponseDto(folderEntity);
+    }
+
+    @Transactional
+    public String deleteTodo(Long folderId){
+        FolderEntity folderEntity = folderRepository.findById(folderId)
+                .orElseThrow(()-> new RuntimeException("there is no folder"));
+        folderEntity.deleteFolder();
+        folderRepository.delete(folderEntity);
+        return "folder delete : "+ folderId;
+    }
+
+    @Transactional(readOnly = true)
+    public FolderDto.FolderResponseDto readFolder(Long folderId){
+        FolderEntity folderEntity  = folderRepository.findById(folderId)
+                .orElseThrow(()-> new RuntimeException("there is no folder"));
+
+        return folderMapper.folderEntityToFolderResponseDto(folderEntity);
+
+    }
+
+
+
+}
