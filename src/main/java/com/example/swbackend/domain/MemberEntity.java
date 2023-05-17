@@ -23,9 +23,9 @@ public class MemberEntity {
     String name;
 
     String password;
-    @OneToMany(mappedBy = "memberEntity")
+    @OneToMany(mappedBy = "memberEntity",fetch = FetchType.LAZY)
     List<FolderEntity> folderEntities = new ArrayList<>();
-    @OneToMany(mappedBy = "memberEntity")
+    @OneToMany(mappedBy = "memberEntity",fetch = FetchType.LAZY)
     List<TodoEntity> todoEntities = new ArrayList<>();
 
     String refreshToken;

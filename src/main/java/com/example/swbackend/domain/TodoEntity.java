@@ -30,9 +30,9 @@ public class TodoEntity extends BaseEntity {
     int priority;
 
     LocalDate wishCompleteDate;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     FolderEntity folderEntity;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     MemberEntity memberEntity;
 
 

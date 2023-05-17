@@ -29,7 +29,7 @@ public class FolderEntity {
     @ManyToOne
     MemberEntity memberEntity;
 
-    @OneToMany(mappedBy = "folderEntity")
+    @OneToMany(mappedBy = "folderEntity", fetch = FetchType.LAZY)
     List<TodoEntity> todoEntities  = new ArrayList<>();
 
     public void deleteFolder(){
