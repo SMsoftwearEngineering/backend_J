@@ -1,6 +1,7 @@
 package com.example.swbackend.service;
 
 import com.example.swbackend.DTO.FolderDto;
+import com.example.swbackend.DTO.PageDto;
 import com.example.swbackend.constant.Color;
 import com.example.swbackend.domain.FolderEntity;
 import com.example.swbackend.domain.MemberEntity;
@@ -9,8 +10,15 @@ import com.example.swbackend.repository.FolderRepository;
 import com.example.swbackend.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -26,11 +34,24 @@ public class FolderService {
         MemberEntity memberEntity = memberService.readMember(postDto.getMemberId());
 
         FolderEntity folderEntity = FolderEntity.createFolder(
-                memberEntity, postDto.getFolderTitle(), Color.valueOf(postDto.getColor()));
+                memberEntity,
+                postDto.getFolderTitle(),
+                postDto.getColor());
 
         folderRepository.save(folderEntity);
 
         return folderMapper.folderEntityToFolderResponseDto(folderEntity);
+    }
+
+    @Transactional(readOnly = true)
+    public PageDto<FolderDto.FolderResponseDto> readListFolder(Long userId, Integer pageNum, Integer pageSize, String sortBy){
+        Pageable pageable = PageRequest.of(pageNum,pageSize, Sort.by(sortBy));
+        MemberEntity memberEntity = memberService.readMember(userId);
+        Page<FolderDto.FolderResponseDto> folderResponseDto =  folderRepository.findAllByMemberEntity(memberEntity, pageable)
+                .map(this.folderMapper::folderEntityToFolderResponseDto);
+
+        return PageDto.makePageDto(folderResponseDto);
+
     }
 
 

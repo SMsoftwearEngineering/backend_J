@@ -29,6 +29,7 @@ public interface FolderMapper {
                 .folderId(folderEntity.getFolderId())
                 .folderTitle(folderEntity.getFolderTitle())
                 .memberId(folderEntity.getMemberEntity().getMemberId())
+                .color(folderEntity.getColor().name())
                 .todoResponseDtos(folderEntity.getTodoEntities()
                         .stream()
                         .map(this::todoEntityToTodoResponseDto)

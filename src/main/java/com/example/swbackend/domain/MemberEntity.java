@@ -7,12 +7,12 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Builder
+@Entity
 public class MemberEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

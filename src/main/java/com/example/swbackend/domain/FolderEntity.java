@@ -40,6 +40,7 @@ public class FolderEntity {
      public static FolderEntity createFolder(MemberEntity memberEntity, String folderTitle, Color color){
         return FolderEntity.builder()
                 .memberEntity(memberEntity)
+                .todoEntities(new ArrayList<>())
                 .folderTitle(folderTitle)
                 .color(color)
                 .build();

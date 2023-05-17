@@ -9,8 +9,10 @@ public interface TodoMapper {
 
     default TodoDto.TodoResponseDto todoEntityToTodoResponseDto(TodoEntity todoEntity){
         return TodoDto.TodoResponseDto.builder()
+                .title(todoEntity.getTitle() )
                 .todoId(todoEntity.getTodoId())
                 .completeDate(todoEntity.getCompleteDate())
+                .wishCompleteDate(todoEntity.getWishCompleteDate())
                 .content(todoEntity.getContent())
                 .folderId(todoEntity.getFolderEntity().getFolderId())
                 .memberId(todoEntity.getMemberEntity().getMemberId())

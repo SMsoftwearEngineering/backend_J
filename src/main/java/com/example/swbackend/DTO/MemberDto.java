@@ -3,39 +3,35 @@ package com.example.swbackend.DTO;
 import jakarta.persistence.Entity;
 import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 public class MemberDto {
-    @Getter
-    @Setter
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    @Builder
+    @Getter
+    @Setter
     public static class RegisterDto{
         String email;
         String password;
         String name;
     }
 
-    @Getter
-    @Setter
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    @Builder
+    @Getter
+    @Setter
     public static class LoginDto{
         String email;
         String password;
         String name;
     }
 
-    @Getter
-    @Setter
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    @Builder
+    @Getter
+    @Setter
     public static class UpdateMemberDto{
         Long memberId;
 
@@ -44,23 +40,22 @@ public class MemberDto {
         String name;
     }
 
+//    @Builder
+//    @NoArgsConstructor
+//    @AllArgsConstructor
+//    @Getter
+//    @Setter
+//    public static class DeleteMemberDto{
+//
+//
+//    }
 
-    @Getter
-    @Setter
+
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    @Builder
-    public static class DeleteMemberDto{
-
-
-    }
-
-
     @Getter
     @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
     public static class MemberResponseDto{
         Long memberId;
         String email;

@@ -1,22 +1,21 @@
 package com.example.swbackend.DTO;
 
+import com.example.swbackend.constant.Color;
 import com.example.swbackend.domain.TodoEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Entity;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 public class FolderDto {
 
-    @Getter
-    @Setter
     @NoArgsConstructor
     @AllArgsConstructor
+    @Getter
+    @Setter
     @Builder
     public static class FolderResponseDto {
         Long folderId;
@@ -27,32 +26,29 @@ public class FolderDto {
     }
 
 
-    @Getter
-    @Setter
     @NoArgsConstructor
     @AllArgsConstructor
+    @Getter
+    @Setter
     @Builder
     public static class FolderPostDto {
 
         String folderTitle;
         Long memberId;
-        String Color;
+        @Schema
+        Color color;
     }
 
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
+
     public static class FolderDeleteDto {
 
     }
 
-    @Getter
-    @Setter
     @NoArgsConstructor
     @AllArgsConstructor
+    @Getter
+    @Setter
     @Builder
     public static class UpdateFolderDto {
         Long folderId;

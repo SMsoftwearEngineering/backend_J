@@ -5,19 +5,16 @@ import com.example.swbackend.domain.MemberEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 public class TodoDto {
-    @Getter
-    @Setter
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    @Builder
+    @Getter
+    @Setter
     public static class TodoResponseDto{
 
         Long todoId;
@@ -26,11 +23,11 @@ public class TodoDto {
 
         String content;
 
-        LocalDateTime completeDate;
+        LocalDate completeDate;
 
         int priority;
 
-        LocalDateTime wishCompleteDate;
+        LocalDate wishCompleteDate;
 
         Long folderId;
 
@@ -38,22 +35,20 @@ public class TodoDto {
     }
 
 
-    @Getter
-    @Setter
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    @Builder
+    @Getter
+    @Setter
     public static class TodoPostDto{
 
         String title;
 
         String content;
 
-        LocalDateTime completeDate;
-
         int priority;
 
-        LocalDateTime wishCompleteDate;
+        LocalDate wishCompleteDate;
 
         Long folderId;
 
@@ -63,11 +58,7 @@ public class TodoDto {
 
 
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
+
     public static class TodoDeleteDto{
 
     }
@@ -85,12 +76,11 @@ public class TodoDto {
 
 
 
-
-    @Getter
-    @Setter
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    @Builder
+    @Getter
+    @Setter
     public static class TodoUpdateDto{
 
         Long todoId;
@@ -99,11 +89,9 @@ public class TodoDto {
 
         String content;
 
-        LocalDateTime completeDate;
-
         int priority;
 
-        LocalDateTime wishCompleteDate;
+        LocalDate wishCompleteDate;
 
         Long folderId;
     }
