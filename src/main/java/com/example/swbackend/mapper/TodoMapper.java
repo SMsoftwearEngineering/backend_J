@@ -16,6 +16,7 @@ public interface TodoMapper {
                 .content(todoEntity.getContent())
                 .folderId(todoEntity.getFolderEntity().getFolderId())
                 .memberId(todoEntity.getMemberEntity().getMemberId())
+                .done(todoEntity.isDone())
                 .build();
     }
 

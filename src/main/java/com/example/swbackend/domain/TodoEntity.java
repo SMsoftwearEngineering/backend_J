@@ -49,6 +49,7 @@ public class TodoEntity extends BaseEntity {
                 .priority(priority)
                 .title(title)
                 .content(content)
+                .done(false)
                 .build();
     }
 

@@ -10,7 +10,8 @@ public enum Color {
     GREEN("GREEN"),
     YELLOW("YELLOW"),
     PURPLE("PURPLE"),
-    ORANGE("ORANGE");
+    ORANGE("ORANGE"),
+    PINK("PINK");
 
     private String color;
     Color(String color){

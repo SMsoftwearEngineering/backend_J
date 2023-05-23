@@ -2,7 +2,9 @@ package com.example.swbackend.domain;
 
 import com.example.swbackend.DTO.MemberDto;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +15,18 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
+@Table(uniqueConstraints = {
+        @UniqueConstraint(name = "아이디 중복 불가", columnNames = "email")
+})
 public class MemberEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long memberId;
-
+    @Column(name = "email")
     String email;
-
+    @NotEmpty
     String name;
-
+    @NotEmpty
     String password;
     @OneToMany(mappedBy = "memberEntity",fetch = FetchType.LAZY)
     List<FolderEntity> folderEntities = new ArrayList<>();
@@ -30,7 +35,15 @@ public class MemberEntity {
 
     String refreshToken;
 
+    @Transactional
     public void deleteMember(){
+        for(FolderEntity folderEntity: folderEntities){
+            folderEntity.deleteFolder();
+        }
+
+        for(TodoEntity todo: todoEntities){
+            todo.deleteTodo();
+        }
         this.folderEntities.clear();
         this.todoEntities.clear();
     }

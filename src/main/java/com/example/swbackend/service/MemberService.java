@@ -4,6 +4,7 @@ import com.example.swbackend.DTO.MemberDto;
 import com.example.swbackend.domain.MemberEntity;
 import com.example.swbackend.mapper.MemberMapper;
 import com.example.swbackend.repository.MemberRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

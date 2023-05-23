@@ -72,6 +72,7 @@ public class FolderService {
         FolderEntity folderEntity = folderRepository.findById(folderId)
                 .orElseThrow(()-> new RuntimeException("there is no folder"));
         folderEntity.deleteFolder();
+
         folderRepository.delete(folderEntity);
         return "folder delete : "+ folderId;
     }

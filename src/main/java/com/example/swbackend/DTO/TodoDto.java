@@ -2,6 +2,7 @@ package com.example.swbackend.DTO;
 
 import com.example.swbackend.domain.FolderEntity;
 import com.example.swbackend.domain.MemberEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,6 +14,7 @@ public class TodoDto {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
+    @Schema
     @Getter
     @Setter
     public static class TodoResponseDto{
@@ -32,12 +34,15 @@ public class TodoDto {
         Long folderId;
 
         Long  memberId;
+
+        Boolean done;
     }
 
 
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
+    @Schema
     @Getter
     @Setter
     public static class TodoPostDto{
@@ -68,6 +73,8 @@ public class TodoDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
+    @Schema
+
     public static class DoneDto{
         Long todoId;
         boolean done;

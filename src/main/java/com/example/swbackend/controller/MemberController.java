@@ -2,7 +2,9 @@ package com.example.swbackend.controller;
 
 import com.example.swbackend.DTO.MemberDto;
 import com.example.swbackend.service.MemberService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +17,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/register")
-    public ResponseEntity login(@RequestBody MemberDto.RegisterDto postMemberDto){
+    public ResponseEntity login(@RequestBody @Valid MemberDto.RegisterDto postMemberDto){
         return ResponseEntity.ok().body(memberService.createMember(postMemberDto));
     }
 
@@ -25,7 +27,7 @@ public class MemberController {
     }
 
     @PatchMapping
-    public ResponseEntity updateMember(@RequestBody MemberDto.UpdateMemberDto updateMemberDto){
+    public ResponseEntity updateMember(@RequestBody @Valid MemberDto.UpdateMemberDto updateMemberDto){
         return ResponseEntity.ok().body(memberService.updateMember(updateMemberDto));
     }
 

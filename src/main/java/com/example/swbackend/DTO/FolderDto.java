@@ -28,6 +28,7 @@ public class FolderDto {
 
     @NoArgsConstructor
     @AllArgsConstructor
+    @Schema
     @Getter
     @Setter
     @Builder
@@ -35,7 +36,6 @@ public class FolderDto {
 
         String folderTitle;
         Long memberId;
-        @Schema
         Color color;
     }
 
@@ -49,6 +49,7 @@ public class FolderDto {
     @AllArgsConstructor
     @Getter
     @Setter
+    @Schema
     @Builder
     public static class UpdateFolderDto {
         Long folderId;

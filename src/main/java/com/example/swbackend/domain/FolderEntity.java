@@ -8,6 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.swbackend.constant.Color;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Getter
@@ -29,10 +30,13 @@ public class FolderEntity {
     @ManyToOne
     MemberEntity memberEntity;
 
-    @OneToMany(mappedBy = "folderEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "folderEntity", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<TodoEntity> todoEntities  = new ArrayList<>();
-
+    @Transactional
     public void deleteFolder(){
+        for(TodoEntity todoEntity : todoEntities){
+            todoEntity.deleteTodo();
+        }
         this.todoEntities.clear();
         this.memberEntity = null;
     }
