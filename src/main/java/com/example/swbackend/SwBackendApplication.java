@@ -2,6 +2,9 @@ package com.example.swbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class SwBackendApplication {
@@ -9,5 +12,7 @@ public class SwBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(SwBackendApplication.class, args);
     }
+
+
 
 }

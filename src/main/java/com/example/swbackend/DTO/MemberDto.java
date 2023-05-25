@@ -16,6 +16,24 @@ public class MemberDto {
     @Setter
     @Schema
 
+    public static class LoginDto{
+        @NotEmpty(message = "please fill email")
+        @Size(min = 3, max = 30)
+        String email;
+
+        @NotEmpty(message = "please fill password")
+        @Size(min = 3, max = 30)
+        String password;
+    }
+
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    @Setter
+    @Schema
+
     public static class RegisterDto{
         @NotEmpty(message = "please fill email")
         @Size(min = 3, max = 30)
@@ -30,18 +48,6 @@ public class MemberDto {
         String name;
     }
 
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Getter
-    @Setter
-    @Schema
-
-    public static class LoginDto{
-        String email;
-        String password;
-        String name;
-    }
 
     @Builder
     @NoArgsConstructor
@@ -63,15 +69,7 @@ public class MemberDto {
         String name;
     }
 
-//    @Builder
-//    @NoArgsConstructor
-//    @AllArgsConstructor
-//    @Getter
-//    @Setter
-//    public static class DeleteMemberDto{
-//
-//
-//    }
+
 
 
     @Builder
@@ -86,6 +84,32 @@ public class MemberDto {
         String email;
         String name;
 
+        @Override
+        public String toString() {
+            return "memberId: "+memberId + " email: " + email + " name" + name;
+        }
+    }
+
+
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    @Setter
+    @Schema
+
+    public static class LoginResponseDto{
+        Long memberId;
+        String email;
+        String name;
+
+        String token;
+
+        @Override
+        public String toString() {
+            return "memberId: "+memberId + " email: " + email + " name" + name;
+        }
     }
 
 
