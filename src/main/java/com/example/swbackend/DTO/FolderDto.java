@@ -2,6 +2,7 @@ package com.example.swbackend.DTO;
 
 import com.example.swbackend.constant.Color;
 import com.example.swbackend.domain.TodoEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import lombok.*;
@@ -35,6 +36,7 @@ public class FolderDto {
     public static class FolderPostDto {
 
         String folderTitle;
+        @JsonProperty(namespace = "memberId")
         Long memberId;
         Color color;
     }
