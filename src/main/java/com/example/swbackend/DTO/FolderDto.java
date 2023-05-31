@@ -35,7 +35,7 @@ public class FolderDto {
     public static class FolderPostDto {
 
         String folderTitle;
-        Long memberId;
+        long memberId;
         Color color;
     }
 
