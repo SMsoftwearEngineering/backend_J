@@ -37,7 +37,7 @@ public class FolderDto {
 
         String folderTitle;
         @JsonProperty(namespace = "memberId")
-        Long memberId;
+        String memberId;
         Color color;
     }
 
