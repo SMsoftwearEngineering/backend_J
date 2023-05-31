@@ -46,7 +46,7 @@ public class FolderService {
     @Transactional(readOnly = true)
     public PageDto<FolderDto.FolderResponseDto> readListFolder(Long userId, Integer pageNum, Integer pageSize, String sortBy){
         Pageable pageable = PageRequest.of(pageNum,pageSize, Sort.by(sortBy));
-        MemberEntity memberEntity = memberService.readMember(userId);
+        MemberEntity memberEntity = memberService.readMember(Long.valueOf(userId));
         Page<FolderDto.FolderResponseDto> folderResponseDto =  folderRepository.findAllByMemberEntity(memberEntity, pageable)
                 .map(this.folderMapper::folderEntityToFolderResponseDto);
 
