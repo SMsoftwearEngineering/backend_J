@@ -31,6 +31,7 @@ public class FolderService {
 
     @Transactional
     public FolderDto.FolderResponseDto createFolder(FolderDto.FolderPostDto postDto){
+        log.info("memberId : {}",postDto.getMemberId());
         MemberEntity memberEntity = memberService.readMember(postDto.getMemberId());
 
         FolderEntity folderEntity = FolderEntity.createFolder(
