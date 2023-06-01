@@ -36,11 +36,23 @@ public class FolderDto {
     public static class FolderPostDto {
 
         String folderTitle;
-        @JsonProperty(namespace = "memberId")
         String memberId;
         Color color;
     }
 
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Schema
+    @Getter
+    @Setter
+    @Builder
+    public static class NewFolderPostDto {
+
+        String folderTitle;
+        Long memberId;
+        Color color;
+    }
 
 
     public static class FolderDeleteDto {

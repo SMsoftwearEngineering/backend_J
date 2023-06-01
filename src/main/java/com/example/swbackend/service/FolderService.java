@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +28,8 @@ public class FolderService {
     private final FolderRepository folderRepository;
     private final MemberService memberService;
     private final FolderMapper folderMapper;
+
+    private final MemberRepository memberRepository;
 
 
     @Transactional
@@ -43,6 +46,23 @@ public class FolderService {
 
         return folderMapper.folderEntityToFolderResponseDto(folderEntity);
     }
+
+
+    @Transactional
+    public FolderDto.FolderResponseDto createFolder(FolderDto.NewFolderPostDto postDto){
+        log.info("memberId : {}",postDto.getMemberId());
+        MemberEntity memberEntity = memberRepository.findById(postDto.getMemberId()).orElseThrow(()-> new UsernameNotFoundException("there is no member"));
+
+        FolderEntity folderEntity = FolderEntity.createFolder(
+                memberEntity,
+                postDto.getFolderTitle(),
+                postDto.getColor());
+
+        folderRepository.save(folderEntity);
+
+        return folderMapper.folderEntityToFolderResponseDto(folderEntity);
+    }
+
 
     @Transactional(readOnly = true)
     public PageDto<FolderDto.FolderResponseDto> readListFolder(Long userId, Integer pageNum, Integer pageSize, String sortBy){

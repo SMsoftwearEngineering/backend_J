@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 @RestController
-@RequestMapping("test")
 public class Test {
     public String getBody(HttpServletRequest request) throws IOException {
 
@@ -45,7 +44,7 @@ public class Test {
         body = stringBuilder.toString();
         return body;
     }
-    @PostMapping
+    @PostMapping("test")
     public String test(HttpServletRequest httpServletRequest) throws IOException {
         return getBody(httpServletRequest);
     }

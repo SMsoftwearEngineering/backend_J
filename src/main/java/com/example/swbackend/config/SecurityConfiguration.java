@@ -32,8 +32,9 @@ public class SecurityConfiguration {
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/**",
+                .requestMatchers(
                         "/auth/**",
+                        "/test/**",
                         "/swagger-ui/index.html/**",
                 "/v2/api-docs",
                 "/swagger-resources",
