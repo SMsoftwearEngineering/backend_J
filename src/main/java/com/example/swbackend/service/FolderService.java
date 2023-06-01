@@ -49,9 +49,24 @@ public class FolderService {
 
 
     @Transactional
-    public FolderDto.FolderResponseDto createFolder(FolderDto.NewFolderPostDto postDto){
+    public FolderDto.FolderResponseDto createNewFolder(FolderDto.NewFolderPostDto postDto){
         log.info("memberId : {}",postDto.getMemberId());
         MemberEntity memberEntity = memberRepository.findById(postDto.getMemberId()).orElseThrow(()-> new UsernameNotFoundException("there is no member"));
+
+        FolderEntity folderEntity = FolderEntity.createFolder(
+                memberEntity,
+                postDto.getFolderTitle(),
+                postDto.getColor());
+
+        folderRepository.save(folderEntity);
+
+        return folderMapper.folderEntityToFolderResponseDto(folderEntity);
+    }
+
+    @Transactional
+    public FolderDto.FolderResponseDto createNew2Folder(FolderDto.New2FolderPostDto postDto){
+        log.info("memberId : {}",postDto.getMemberId());
+        MemberEntity memberEntity = memberService.readMember(Long.valueOf(postDto.getMemberId()));
 
         FolderEntity folderEntity = FolderEntity.createFolder(
                 memberEntity,

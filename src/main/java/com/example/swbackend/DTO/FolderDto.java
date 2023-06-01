@@ -54,6 +54,19 @@ public class FolderDto {
         Color color;
     }
 
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Schema
+    @Getter
+    @Setter
+    @Builder
+    public static class New2FolderPostDto {
+
+        String folderTitle;
+        int memberId;
+        Color color;
+    }
+
 
     public static class FolderDeleteDto {
 

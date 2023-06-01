@@ -39,7 +39,18 @@ public class FolderController {
             @ApiResponse(responseCode = "404", description = "NOT FOUND !!", content = @Content),
             @ApiResponse(responseCode = "500", description = "서버에서 에러가 발생하였습니다.", content = @Content)})
     public ResponseEntity creatNewFolder(@RequestBody FolderDto.NewFolderPostDto postDto){
-        return ResponseEntity.ok().body(folderService.createFolder(postDto));
+        return ResponseEntity.ok().body(folderService.createNewFolder(postDto));
+    }
+
+    @PostMapping("/new2")
+    @Operation(summary = "폴더 생성", description = "폴더 생성하기")
+    @ApiResponses({@ApiResponse(responseCode = "200" ,description = "폴더가 정상적으로 생성됨",
+            content = @Content(schema = @Schema(implementation = FolderDto.FolderResponseDto.class))),
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST !!", content = @Content),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND !!", content = @Content),
+            @ApiResponse(responseCode = "500", description = "서버에서 에러가 발생하였습니다.", content = @Content)})
+    public ResponseEntity creatNewFolder(@RequestBody FolderDto.New2FolderPostDto postDto){
+        return ResponseEntity.ok().body(folderService.createNew2Folder(postDto));
     }
 
     @PatchMapping
